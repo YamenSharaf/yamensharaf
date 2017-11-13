@@ -4,7 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
-import './sass/app.scss'
+import '@/sass/app.scss'
 import locale from 'element-ui/lib/locale/lang/en'
 
 Vue.config.productionTip = false
