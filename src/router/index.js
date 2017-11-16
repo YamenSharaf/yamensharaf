@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
-import Test from '@/components/Test'
-
+import Showcase from '@/components/Showcase'
+import Blog from '@/components/Blog'
 Vue.use(Router)
 
 export default new Router({
@@ -14,9 +14,14 @@ export default new Router({
       component: Hello
     },
     {
-      path: '/test',
-      name: 'Test',
-      component: Test
+      path: '/showcase',
+      name: 'Showcase',
+      component: Showcase
+    },
+    {
+      path: '/blog',
+      name: 'Blog',
+      component: Blog
     }
   ]
 })

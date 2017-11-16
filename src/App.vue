@@ -1,57 +1,41 @@
 <template>
   <div id="app">
     <header>
-      <span>Vue.js PWA</span>
+        <header-view></header-view>
     </header>
     <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
-      <transition name="fade">
-        <router-view></router-view>
-      </transition>
+      <div class="container">
+        <img src="./assets/logo.png" alt="Vue.js PWA">
+        <transition name="fade">
+          <router-view></router-view>
+        </transition>
+      </div>
     </main>
+    <footer-view></footer-view>
   </div>
 </template>
 
 <script>
+import HeaderView from '@/components/HeaderView'
+import FooterView from '@/components/FooterView'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    HeaderView,
+    FooterView
+  }
 }
 </script>
 
-<style>
-
-body {
-  margin: 0;
-}
-
-#app {
-  /* font-family: 'Avenir', Helvetica, Arial, sans-serif; */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
+<style lang="scss">
 
 main {
+  /* min-height: 75vh; */
   text-align: center;
   margin-top: 40px;
 }
 
-header {
-  margin: 0;
-  height: 56px;
-  padding: 0 16px 0 24px;
-  background-color: #35495E;
-  color: #ffffff;
-}
-
-header span {
-  display: block;
-  position: relative;
-  font-size: 20px;
-  line-height: 1;
-  letter-spacing: .02em;
-  font-weight: 400;
-  box-sizing: border-box;
-  padding-top: 16px;
+.router-link-exact-active {
+  // border: 3px solid red;
 }
 </style>

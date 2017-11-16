@@ -1,14 +1,13 @@
-<template>
-  <h1> {{msg}} </h1>
+<template lang="pug">
+  h1.display-4 {{msg}}
 </template>
 
 <script>
 export default {
   data () {
     return {
-      msg: 'Hello from Test'
+      msg: 'Blog Component'
     }
   }
 }
 </script>
-
