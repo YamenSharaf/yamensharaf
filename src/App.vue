@@ -5,8 +5,8 @@
     </header>
     <main>
       <div class="container">
-        <img src="./assets/logo.png" alt="Vue.js PWA">
-        <transition name="fade">
+        <img src="./assets/img/logo.png" alt="Vue.js PWA">
+        <transition name="fade" mode="out-in" duration="250">
           <router-view></router-view>
         </transition>
       </div>

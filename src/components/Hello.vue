@@ -1,7 +1,6 @@
 <template>
   <div class="hello">
      <el-button type="primary">Primary</el-button>
-     <a href="#" class="btn btn-primary"> Primary BS </a>
     <h1>{{ msg }}</h1>
     <h2>Essential Links</h2>
     <ul>
