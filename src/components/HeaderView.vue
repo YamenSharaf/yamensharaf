@@ -1,20 +1,21 @@
-<template lang="pug">
-  .container-fluid
-    nav.navbar.navbar-light.justify-content-around
-      router-link(to='/' exact)
-        a.d-none.d-sm-inline-block.mr-auto.navbar-brand(href="#")
-          h1.text-primary.display-4 YS
-      ul.navbar-nav.flex-row.px-2
-        router-link(to='/showcase')
-          li.nav-item
-            el-button(type='primary' size='medium' plain)
-              i.icon.ion-ios-keypad.mr-2
-              span.text-uppercase Showcase
-        router-link(to='/blog')
-          li.nav-item
-            el-button(type='primary' size='medium' plain)
-              i.icon.ion-edit.mr-2
-              span.text-uppercase Blog
+<template>
+  <b-navbar toggleable="md" type="light" class="p-4">
+
+
+    <b-navbar-brand class="font-title h1 text-primary mb-0">Yamen Sharaf</b-navbar-brand>
+
+    <b-collapse is-nav id="nav_collapse">
+
+      <!-- Right aligned nav items -->
+      <b-navbar-nav class="ml-auto">
+        <b-nav-item :to="{ name: 'Showcase' }">Showcase</b-nav-item>
+        <b-nav-item :to="{ name: 'Blog' }">Blog</b-nav-item>
+
+      </b-navbar-nav>
+
+    </b-collapse>
+    <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+  </b-navbar>
 </template>
 
 <script>

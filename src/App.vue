@@ -1,17 +1,13 @@
 <template>
-  <div id="app">
-    <header>
-        <header-view></header-view>
-    </header>
-    <main>
-      <div class="container">
-        <img src="./assets/img/logo.png" alt="Vue.js PWA">
-        <transition name="fade" mode="out-in" duration="250">
-          <router-view></router-view>
-        </transition>
-      </div>
-    </main>
-    <footer-view></footer-view>
+  <div>
+    <header-view/>
+      <transition
+        name="fade"
+        mode="out-in"
+        duration="250">
+        <router-view/>
+      </transition>
+    <footer-view/>
   </div>
 </template>
 
@@ -28,6 +24,8 @@ export default {
 </script>
 
 <style lang="scss">
+
+@import '~sass';
 
 main {
   /* min-height: 75vh; */

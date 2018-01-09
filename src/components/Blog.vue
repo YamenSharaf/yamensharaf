@@ -1,5 +1,6 @@
 <template lang="pug">
-  h1.display-4 {{msg}}
+  .container
+    h1.display-4 {{msg}}
 </template>
 
 <script>
