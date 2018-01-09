@@ -1,6 +1,13 @@
-<template lang="pug">
-  .container
-    h1.display-4 {{msg}}
+<template>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 page-wrapper d-flex flex-center">
+        <h1 class="display-4 text-primary text-center">
+          Coming soon
+        </h1>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
