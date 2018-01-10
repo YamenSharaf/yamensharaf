@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-8 d-flex flex-center page-wrapper">
         <transition name="fadeUp" appear>
-          <el-card class="w-100 d-flex align-items-center">
+          <el-card class="w-100 d-flex align-items-center mb-5">
             <div class="row align-items-center">
               <div class="col-12 col-md-8 order-2 order-md-1">
                 <el-carousel :interval="6000" indicator-position="none" class="h-100">
@@ -53,10 +53,101 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12">
-        
+  <div class="container-fluid mb-5">
+    <div class="row mb-5">
+      <div class="col-12 mb-5">
+        <carousel :pagination-enabled="false" :per-page-custom="[[768, 5], [1024, 6]]" autoplay class="mb-5">
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-javascript-plain"></i>
+            </h1>
+          </slide>
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-vuejs-plain"></i>
+            </h1>
+          </slide>
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-react-original"></i>
+            </h1>
+          </slide>
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-bootstrap-plain"></i>
+            </h1>
+          </slide>
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-sass-original"></i>
+            </h1>
+          </slide>
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-webpack-plain"></i>
+            </h1>
+          </slide>
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-mocha-plain"></i>
+            </h1>
+          </slide>
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-gulp-plain"></i>
+            </h1>
+          </slide>
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-html5-plain"></i>
+            </h1>
+          </slide>
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-git-plain"></i>
+            </h1>
+          </slide>
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-nodejs-plain"></i>
+            </h1>
+          </slide>
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-photoshop-plain"></i>
+            </h1>
+          </slide>
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-visualstudio-plain"></i>
+            </h1>
+          </slide>
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-heroku-original"></i>
+            </h1>
+          </slide>
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-babel-plain"></i>
+            </h1>
+          </slide>
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-express-original"></i>
+            </h1>
+          </slide>
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-trello-plain"></i>
+            </h1>
+          </slide>
+          <slide>
+            <h1 class="display-4 text-primary font-title text-center">
+              <i class="devicon-slack-plain"></i>
+            </h1>
+          </slide>
+        </carousel>
       </div>
     </div>
   </div>

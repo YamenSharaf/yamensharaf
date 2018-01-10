@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="position-relative h-100">
     <header-view/>
       <transition
         name="fade"
