@@ -5,6 +5,11 @@
       <b-collapse is-nav id="nav_collapse">
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto d-inline-flex flex-center">
+          <b-nav-item href="mailto:yamensharaf@gmail.com">
+            <el-button icon="el-icon-message">
+              Contact
+            </el-button>
+          </b-nav-item>
           <b-nav-item href="https://cl.ly/okgs/download/Resume%20-%20Yamen%20Sharaf.pdf">
             <el-button icon="el-icon-download">
               Résumé
@@ -35,6 +40,13 @@ export default {
 
 .router-link-active, .active {
   color: $color-primary !important;
+}
+
+#nav_collapse {
+  display: inline-grid;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .navbar {
