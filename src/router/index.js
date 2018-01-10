@@ -14,6 +14,10 @@ export default new Router({
       component: Home
     },
     {
+      path: '*',
+      redirect: '/'
+    },
+    {
       path: '/showcase',
       name: 'Showcase',
       component: Showcase

@@ -5,7 +5,7 @@
       <b-collapse is-nav id="nav_collapse">
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto d-inline-flex flex-center">
-          <b-nav-item href="../../static/files/Resume - Yamen Sharaf.pdf">
+          <b-nav-item href="https://cl.ly/okgs/download/Resume%20-%20Yamen%20Sharaf.pdf">
             <el-button icon="el-icon-download">
               Résumé
             </el-button>
@@ -29,7 +29,14 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+
+@import '~sass';
+
+.router-link-active, .active {
+  color: $color-primary !important;
+}
+
 .navbar {
   ul {
     li {

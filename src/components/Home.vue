@@ -2,7 +2,7 @@
 <div class="page-wrapper">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-12 col-md-8 d-flex flex-center page-wrapper">
+      <div class="col-12 col-md-8 d-flex flex-center app-wrapper">
         <transition name="fadeUp" appear>
           <el-card class="w-100 d-flex align-items-center mb-5">
             <div class="row align-items-center">
