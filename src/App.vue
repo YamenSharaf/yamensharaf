@@ -19,6 +19,9 @@ export default {
   components: {
     HeaderView,
     FooterView
+  },
+  mounted () {
+    this.$store.dispatch('monitorUserStatus')
   }
 }
 </script>

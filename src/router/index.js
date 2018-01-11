@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+// import store from '../store'
 import Home from '@/components/Home'
 import Showcase from '@/components/Showcase'
+import Error404 from '@/components/404'
 import Blog from '@/components/Blog'
+import Login from '@/components/Login'
 Vue.use(Router)
 
 export default new Router({
@@ -15,12 +18,18 @@ export default new Router({
     },
     {
       path: '*',
-      redirect: '/'
+      name: '404',
+      component: Error404
     },
     {
       path: '/showcase',
       name: 'Showcase',
       component: Showcase
+    },
+    {
+      path: '/admin',
+      name: 'Login',
+      component: Login
     },
     {
       path: '/blog',

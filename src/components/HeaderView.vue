@@ -17,6 +17,11 @@
           </b-nav-item>
           <b-nav-item :to="{ name: 'Showcase' }">Showcase</b-nav-item>
           <b-nav-item :to="{ name: 'Blog' }">Blog</b-nav-item>
+          <b-nav-item v-if="userStatus.loggedIn">
+            <el-button @click="handleLogOut" icon="el-icon-download">
+              Log out
+            </el-button>
+          </b-nav-item>
         </b-navbar-nav>
       </b-collapse>
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
@@ -29,6 +34,16 @@ export default {
   data () {
     return {
       msg: 'Hello from Test'
+    }
+  },
+  computed: {
+    userStatus () {
+      return this.$store.getters.getUserStatus
+    }
+  },
+  methods: {
+    handleLogOut () {
+      this.$store.dispatch('logUserOut')
     }
   }
 }
