@@ -1,0 +1,40 @@
+<template>
+  <el-card class="w-100 d-flex align-items-center mb-5">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-8 order-2 order-md-1">
+        <el-carousel :interval="6000" indicator-position="none" class="h-100">
+          <el-carousel-item class="d-flex flex-column flex-center">
+            <h1 class="text-primary font-title text-center">
+              Yamen Sharaf
+            </h1>
+            <h5 class="text-muted text-center">
+              A modern front-end engineer
+            </h5>
+          </el-carousel-item>
+          <el-carousel-item v-for="(desc, index) in yamenDesc" :key="index" class="d-flex flex-column flex-center">
+            <h1 class="display-4 text-primary font-title text-center">
+              <i :class="desc.icon"></i>
+            </h1>
+            <h5 class="text-muted text-center">
+              {{desc.text}}
+            </h5>
+          </el-carousel-item>
+        </el-carousel>
+      </div>
+      <div class="col-12 col-md-4 order-1 order-md-2">
+        <img class="img-fluid" src="../assets/img/yamen.jpg" alt="Yamen Sharaf">
+      </div>
+    </div>
+  </el-card>
+</template>
+
+<script>
+export default {
+  computed: {
+    yamenDesc () {
+      return this.$store.getters.getYamenDesc
+    }
+  }
+}
+</script>
+
