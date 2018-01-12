@@ -1,21 +1,63 @@
 <template>
-  <carousel :pagination-enabled="false" :per-page-custom="[[768, 5], [1024, 6]]" autoplay class="mb-5">
-    <slide v-for="(icon, index) in devIcons" :key="index">
-      <el-tooltip effect="dark" :content="icon.title" placement="top">
-        <h1 class="display-4 text-primary font-title text-center">
-          <i :class="icon.icon"></i>
-        </h1>
+  <slick
+    ref="slick"
+    :options="slickOptions">
+    <h1
+      v-for="(icon, index) in devIcons"
+      :key="index"
+      class="display-4 text-primary font-title text-center">
+      <el-tooltip
+        effect="dark"
+        placement="top"
+        :content="icon.title">
+        <i :class="icon.icon"/>
       </el-tooltip>
-    </slide>
-  </carousel>
+    </h1>
+  </slick>
 </template>
 
 <script>
-import { Carousel, Slide } from 'vue-carousel'
+import Slick from 'vue-slick'
+
 export default {
   components: {
-    'carousel': Carousel,
-    'slide': Slide
+    'slick': Slick
+  },
+  data () {
+    return {
+      slickOptions: {
+        infinite: true,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2500,
+        responsive: [
+          {
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: false,
+              dots: false
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      }
+    }
   },
   computed: {
     devIcons () {
@@ -24,3 +66,8 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '~slick-carousel/slick/slick.css';
+@import '~slick-carousel/slick//slick-theme.css';
+</style>

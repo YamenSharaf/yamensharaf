@@ -10,8 +10,8 @@
     </div>
   </div>
   <div class="container-fluid mb-5">
-    <div class="row mb-5">
-      <div class="col-12 mb-5">
+    <div class="row no-gutters mb-5 flex-center">
+      <div class="col-12 mb-5 px-3">
         <dev-tech/>
       </div>
     </div>

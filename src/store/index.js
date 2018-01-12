@@ -101,6 +101,43 @@ const store = new Vuex.Store({
         icon: `devicon-webpack-plain`,
         text: `I use a modern tooling system with bundlers like Webpack with plugins such as Babel and PostCSS to code with the latest specs without sacrificing targeted users`
       }
+    ],
+    socialIcons: [
+      {
+        site: `GitHub`,
+        icon: `mdi mdi-github-box`,
+        url: `https://github.com/YamenSharaf`
+      },
+      {
+        site: `LinkedIn`,
+        icon: `mdi mdi-linkedin-box`,
+        url: `https://www.linkedin.com/in/yamensharaf/`
+      },
+      {
+        site: `Facebook`,
+        icon: `mdi mdi-facebook-box`,
+        url: `https://www.facebook.com/YamenSharaf`
+      },
+      {
+        site: `Twitter`,
+        icon: `mdi mdi-twitter-box`,
+        url: `https://twitter.com/YamenSharaf`
+      },
+      {
+        site: `WhatsApp`,
+        icon: `mdi mdi-whatsapp`,
+        url: `https://api.whatsapp.com/send?phone=201111046486&text=Hi%20I%27m%20coming%20from%20the%20web`
+      },
+      {
+        site: `Messenger`,
+        icon: `mdi mdi-facebook-messenger`,
+        url: `https://m.me/YamenSharaf`
+      },
+      {
+        site: `Phone`,
+        icon: `mdi mdi-phone`,
+        url: `tel:+20-111-104-6486`
+      }
     ]
   },
   getters: {
@@ -113,6 +150,9 @@ const store = new Vuex.Store({
     },
     getYamenDesc (state) {
       return state.yamenDescription
+    },
+    getSocialIcons (state) {
+      return state.socialIcons
     }
   },
   actions: {
