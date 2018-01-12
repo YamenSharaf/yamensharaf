@@ -4,11 +4,11 @@
       <div class="col-12 col-md-8 order-2 order-md-1">
         <el-carousel :interval="6000" indicator-position="none" class="h-100">
           <el-carousel-item class="d-flex flex-column flex-center">
-            <h1 class="text-primary font-title text-center">
-              Yamen Sharaf
+            <h1 :style="font.title" class="text-primary text-center">
+              {{ $t("message.ys") }}
             </h1>
             <h5 class="text-muted text-center">
-              A modern front-end engineer
+              {{ $t('message.tagline') }}
             </h5>
           </el-carousel-item>
           <el-carousel-item v-for="(desc, index) in yamenDesc" :key="index" class="d-flex flex-column flex-center">
@@ -16,7 +16,7 @@
               <i :class="desc.icon"></i>
             </h1>
             <h5 class="text-muted text-center">
-              {{desc.text}}
+              {{ $t(`message.${desc.text}`) }}
             </h5>
           </el-carousel-item>
         </el-carousel>
@@ -26,7 +26,7 @@
           effect="dark"
           placement="top"
           :open-delay="500"
-          content="That's me">
+          :content="$t(`message.meComment`)">
           <img
             class="img-fluid img-dimmed"
             src="../assets/img/yamen.jpg"
@@ -43,6 +43,9 @@ export default {
   computed: {
     yamenDesc () {
       return this.$store.getters.getYamenDesc
+    },
+    font () {
+      return this.$store.getters.getFont
     }
   }
 }

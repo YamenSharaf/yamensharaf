@@ -1,5 +1,8 @@
 <template>
-  <div class="position-relative h-100">
+  <div
+    :dir=" lang === 'ar' ? 'rtl' : 'ltr' "
+    :style="font.primary"
+    class="position-relative h-100">
     <header-view/>
       <transition
         name="fade"
@@ -20,8 +23,38 @@ export default {
     HeaderView,
     FooterView
   },
+  data () {
+    return {
+      lang: `en`
+    }
+  },
+  computed: {
+    locale: {
+      get () {
+        return this.$store.getters.getLocale
+      },
+      set (lang) {
+        this.$store.commit('setLocale', lang)
+        this.lang = lang
+      }
+    },
+    font () {
+      return this.$store.getters.getFont
+    }
+  },
+  methods: {
+    monitorUserStatus () {
+      this.$store.dispatch('monitorUserStatus')
+    },
+    listenForLocaleChange () {
+      this.$bus.$on('set locale', (lang) => {
+        this.locale = lang
+      })
+    }
+  },
   mounted () {
-    this.$store.dispatch('monitorUserStatus')
+    this.listenForLocaleChange()
+    this.monitorUserStatus()
   }
 }
 </script>

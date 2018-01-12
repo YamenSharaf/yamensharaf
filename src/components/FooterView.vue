@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row justify-content-between">
         <div class="col-md-5 text-info">
-          &reg; {{currentYear}} All rights reserved to Yamen Sharaf
+         {{currentYear}} {{ $t(`message.copyright`) }}
         </div>
         <div class="col-md-4 d-flex align-center justify-content-around">
           <a

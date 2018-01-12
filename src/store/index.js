@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import {app} from '../main'
 import db from '../db'
 import auth from '../db/auth'
 
@@ -9,6 +10,7 @@ const blogPostsRef = db.collection('blogPosts')
 
 const store = new Vuex.Store({
   state: {
+    lang: 'en',
     userStatus: {
       loggedIn: false,
       uid: '',
@@ -91,15 +93,15 @@ const store = new Vuex.Store({
     yamenDescription: [
       {
         icon: `devicon-javascript-plain`,
-        text: `I write modern JavaScript apps leveraging modern frameworks such as Vue.js and React.js to build single page applications that are robust and fast with central state management`
+        text: `jsStatement`
       },
       {
         icon: `devicon-sass-original`,
-        text: `I write modular CSS using the latest specs either manually with Flexbox and CSS Grid or with the help of a framework like Bootstrap or Bulma. I can scope my styles to keep them contained with the BEM methodology`
+        text: `cssStatement`
       },
       {
         icon: `devicon-webpack-plain`,
-        text: `I use a modern tooling system with bundlers like Webpack with plugins such as Babel and PostCSS to code with the latest specs without sacrificing targeted users`
+        text: `toolingStatement`
       }
     ],
     socialIcons: [
@@ -141,6 +143,35 @@ const store = new Vuex.Store({
     ]
   },
   getters: {
+    getLocale () {
+      return app.$i18n.locale
+    },
+    getLang (state) {
+      return state.lang
+    },
+    getFont (state) {
+      if (state.lang === 'en') {
+        return {
+          primary: {
+            fontFamily: 'Lato'
+          },
+          title: {
+            fontFamily: 'Poppins'
+          }
+        }
+      } else {
+        return {
+          primary: {
+            fontFamily: 'Amiri',
+            fontSize: '1.2rem'
+          },
+          title: {
+            fontFamily: 'Amiri',
+            fontSize: '2rem'
+          }
+        }
+      }
+    },
     getUserStatus (state) {
       console.log(blogPostsRef)
       return state.userStatus
@@ -178,6 +209,10 @@ const store = new Vuex.Store({
     }
   },
   mutations: {
+    setLocale (state, payload) {
+      app.$i18n.locale = payload
+      state.lang = payload
+    },
     setUserStatus (state, payload) {
       state.userStatus = {...state.userStatus, ...payload}
     }

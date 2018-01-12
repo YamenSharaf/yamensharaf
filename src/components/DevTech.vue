@@ -1,19 +1,21 @@
 <template>
-  <slick
-    ref="slick"
-    :options="slickOptions">
-    <h1
-      v-for="(icon, index) in devIcons"
-      :key="index"
-      class="display-4 text-primary font-title text-center">
-      <el-tooltip
-        effect="dark"
-        placement="top"
-        :content="icon.title">
-        <i :class="icon.icon"/>
-      </el-tooltip>
-    </h1>
-  </slick>
+  <div dir="ltr">
+    <slick
+      ref="slick"
+      :options="slickOptions">
+      <h1
+        v-for="(icon, index) in devIcons"
+        :key="index"
+        class="display-4 text-primary font-title text-center">
+        <el-tooltip
+          effect="dark"
+          placement="top"
+          :content="icon.title">
+          <i :class="icon.icon"/>
+        </el-tooltip>
+      </h1>
+    </slick>
+  </div>
 </template>
 
 <script>

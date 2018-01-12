@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-12 page-wrapper d-flex flex-center">
         <h1 class="display-4 text-primary text-center">
-          Coming soon
+          {{ $t(`message.comingSoon`) }}
         </h1>
     </div>
   </div>
