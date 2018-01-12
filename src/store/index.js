@@ -104,37 +104,37 @@ const store = new Vuex.Store({
     ],
     socialIcons: [
       {
-        site: `GitHub`,
+        title: `View my GitHub page`,
         icon: `mdi mdi-github-box`,
         url: `https://github.com/YamenSharaf`
       },
       {
-        site: `LinkedIn`,
+        title: `View my LinkedIn Profile`,
         icon: `mdi mdi-linkedin-box`,
         url: `https://www.linkedin.com/in/yamensharaf/`
       },
       {
-        site: `Facebook`,
+        title: `Visit my Facebook profile`,
         icon: `mdi mdi-facebook-box`,
         url: `https://www.facebook.com/YamenSharaf`
       },
       {
-        site: `Twitter`,
+        title: `Visit my Twitter account`,
         icon: `mdi mdi-twitter-box`,
         url: `https://twitter.com/YamenSharaf`
       },
       {
-        site: `WhatsApp`,
+        title: `Contact me on WhatsApp`,
         icon: `mdi mdi-whatsapp`,
         url: `https://api.whatsapp.com/send?phone=201111046486&text=Hi%20I%27m%20coming%20from%20the%20web`
       },
       {
-        site: `Messenger`,
+        title: `Message me on Facebook Messenger`,
         icon: `mdi mdi-facebook-messenger`,
         url: `https://m.me/YamenSharaf`
       },
       {
-        site: `Phone`,
+        title: `Call me on the phone`,
         icon: `mdi mdi-phone`,
         url: `tel:+20-111-104-6486`
       }

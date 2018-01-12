@@ -13,7 +13,12 @@
             target="_blank"
             rel="nonopener"
             class="h7 text-info">
-            <i :class="icon.icon" aria-hidden="true"></i>
+              <el-tooltip
+                effect="dark"
+                placement="top"
+                :content="icon.title">
+                <i :class="icon.icon" aria-hidden="true"></i>
+              </el-tooltip>
           </a>
         </div>
       </div>
