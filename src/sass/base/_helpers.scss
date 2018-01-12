@@ -58,3 +58,12 @@
 .navbar--active {
   color: $color-primary !important;
 }
+
+.img-dimmed {
+  filter: grayscale(100%);
+  transition: filter .5s ease-in-out;
+
+  &:hover {
+    filter: grayscale(0%);
+  }
+}

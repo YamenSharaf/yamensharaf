@@ -1,5 +1,5 @@
 <template>
-  <el-card class="w-100 d-flex align-items-center mb-5">
+  <el-card class="w-100 d-flex align-items-center mb-5 yamen-card">
     <div class="row align-items-center">
       <div class="col-12 col-md-8 order-2 order-md-1">
         <el-carousel :interval="6000" indicator-position="none" class="h-100">
@@ -22,7 +22,17 @@
         </el-carousel>
       </div>
       <div class="col-12 col-md-4 order-1 order-md-2">
-        <img class="img-fluid" src="../assets/img/yamen.jpg" alt="Yamen Sharaf">
+        <el-tooltip
+          effect="dark"
+          placement="top"
+          :open-delay="500"
+          content="That's me">
+          <img
+            class="img-fluid img-dimmed"
+            src="../assets/img/yamen.jpg"
+            title="Yamen Sharaf"
+            alt="Yamen Sharaf">
+        </el-tooltip>
       </div>
     </div>
   </el-card>
@@ -38,3 +48,12 @@ export default {
 }
 </script>
 
+<style lang="scss">
+.yamen-card {
+  .el-card {
+    &__body {
+      width: 100%;
+    }
+  }
+}
+</style>

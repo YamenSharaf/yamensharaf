@@ -31,6 +31,7 @@ export default {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 2500,
+        pauseOnHover: false,
         responsive: [
           {
             breakpoint: 1024,

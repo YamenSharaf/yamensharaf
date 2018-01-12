@@ -48,7 +48,7 @@ const store = new Vuex.Store({
         icon: `devicon-gulp-plain`
       },
       {
-        title: `HTML5`,
+        title: `HTML`,
         icon: `devicon-html5-plain`
       },
       {

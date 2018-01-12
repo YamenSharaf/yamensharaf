@@ -18,6 +18,7 @@
     "element-ui": "^2.0.11",
     "firebase": "^4.8.1",
     "jquery": "^3.2.1",
+    "progressive-image": "^1.2.0",
     "pug": "^2.0.0-rc.4",
     "shed-css": "^1.4.0",
     "vue": "^2.5.13",
