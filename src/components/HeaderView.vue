@@ -39,7 +39,7 @@
           <b-nav-item :to="{ name: 'Showcase' }">{{ $t(`message.showcase`) }}</b-nav-item>
           <b-nav-item :to="{ name: 'Blog' }"> {{ $t(`message.blog`) }} </b-nav-item>
           <b-nav-item v-if="userStatus.loggedIn">
-            <el-button @click="handleLogOut" icon="el-icon-download">
+            <el-button @click="handleLogOut" icon="mdi mdi-logout-variant">
               Log out
             </el-button>
           </b-nav-item>

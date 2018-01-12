@@ -72,6 +72,11 @@ export default {
       }
     }
   },
+  computed: {
+    userStatus () {
+      return this.$store.getters.getUserStatus
+    }
+  },
   methods: {
     submitForm () {
       this.loading = true
@@ -79,6 +84,7 @@ export default {
         .then(() => {
           this.loading = false
           this.$message.success(`Logged in successfully`)
+          this.$router.push({ name: 'Dashboard' })
         })
         .catch((error) => {
           this.loading = false
