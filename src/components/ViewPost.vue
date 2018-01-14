@@ -6,8 +6,12 @@
           {{ post.title }}
         </h1>
       </div>
+
+      <div v-if="post.imageUrl && imageLoading" v-loading="imageLoading" style="min-height: 500px" class="col-md-12 mt-5">
+        
+      </div>
       <div v-if="post.imageUrl" class="col-md-6 mt-5">
-        <img class="img-fluid" :src="post.imageUrl" :alt="post.title">
+        <img @load="HandleImageLoad" class="img-fluid" :src="post.imageUrl" :alt="post.title">
       </div>
       <div v-if="post.body" class="col-md-12 mt-5">
         <p v-html="post.body" class="h9 text-danger text-center">
@@ -20,7 +24,9 @@
 <script>
 export default {
   data () {
-    return {}
+    return {
+      imageLoading: true
+    }
   },
   computed: {
     postId () {
@@ -28,6 +34,11 @@ export default {
     },
     post () {
       return this.$store.getters.getBlogPost(this.postId)
+    }
+  },
+  methods: {
+    HandleImageLoad () {
+      this.imageLoading = false
     }
   }
 }

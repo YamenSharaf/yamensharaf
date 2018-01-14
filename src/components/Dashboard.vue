@@ -33,13 +33,6 @@
           </template>
         </el-table-column>
         <el-table-column
-          label="Body">
-          <template slot-scope="scope">
-            <i class="el-icon-time"></i>
-            <span style="margin-left: 10px">{{ scope.row.body }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column
           label="Operations">
           <template slot-scope="scope">
             <el-button
