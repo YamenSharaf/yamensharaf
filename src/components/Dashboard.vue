@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-md-12 page-wrapper d-flex flex-center">
         <h1 class="display-4 text-primary text-center">
-          Admin dashboard
+          Welcome back, {{ user.email }}
         </h1>
     </div>
   </div>
@@ -15,6 +15,11 @@ export default {
   data () {
     return {
       msg: 'Showcase Component'
+    }
+  },
+  computed: {
+    user () {
+      return this.$store.getters.getUserStatus
     }
   }
 }

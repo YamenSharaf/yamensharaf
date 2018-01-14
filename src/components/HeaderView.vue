@@ -1,24 +1,45 @@
 <template>
-  <b-navbar toggleable="md" type="light" class="p-4">
+  <b-navbar toggleable="md" type="light" class="main-navbar p-4">
+    <el-radio-group dir="ltr" class="d-none d-md-block position-absolute" style="left: 40%" size="medium" @change="handleLocaleChange" v-model="lang">
+      <el-radio-button class="font-primary" label="en">
+          EN
+      </el-radio-button>
+      <el-radio-button class="font-primary" label="ar">
+          ع
+      </el-radio-button>
+    </el-radio-group>
     <b-container>
-      <b-navbar-brand :to="{ name: 'Home' }" class="font-title h1 text-primary mb-0">Yamen Sharaf</b-navbar-brand>
+      <b-navbar-brand
+        :to="{ name: 'Home' }"
+        :style="font.title"
+        class="h1 text-primary mb-0">
+        {{ $t(`message.ys`) }}
+      </b-navbar-brand>
+      <el-radio-group dir="ltr" class="d-block d-md-none" size="medium" @change="handleLocaleChange" v-model="lang">
+        <el-radio-button class="font-primary" label="en">
+            EN
+        </el-radio-button>
+        <el-radio-button class="font-primary" label="ar">
+            ع
+        </el-radio-button>
+      </el-radio-group>
       <b-collapse is-nav id="nav_collapse">
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto d-inline-flex flex-center">
           <b-nav-item href="mailto:yamensharaf@gmail.com">
             <el-button icon="el-icon-message">
-              Contact
+              {{ $t(`message.contact`) }}
             </el-button>
           </b-nav-item>
           <b-nav-item href="https://cl.ly/okgs/download/Resume%20-%20Yamen%20Sharaf.pdf">
             <el-button icon="el-icon-download">
-              Résumé
+              {{ $t(`message.resume`) }}
             </el-button>
           </b-nav-item>
-          <b-nav-item :to="{ name: 'Showcase' }">Showcase</b-nav-item>
-          <b-nav-item :to="{ name: 'Blog' }">Blog</b-nav-item>
+          <b-nav-item :to="{ name: 'Showcase' }">{{ $t(`message.showcase`) }}</b-nav-item>
+          <b-nav-item :to="{ name: 'Blog' }"> {{ $t(`message.blog`) }} </b-nav-item>
           <b-nav-item v-if="userStatus.loggedIn">
-            <el-button @click="handleLogOut" icon="el-icon-download">
+            <el-button @click="handleLogOut" icon="mdi mdi-logout-variant">
               Log out
             </el-button>
           </b-nav-item>
@@ -33,15 +54,21 @@
 export default {
   data () {
     return {
-      msg: 'Hello from Test'
+      lang: 'en'
     }
   },
   computed: {
     userStatus () {
       return this.$store.getters.getUserStatus
+    },
+    font () {
+      return this.$store.getters.getFont
     }
   },
   methods: {
+    handleLocaleChange (lang) {
+      this.$bus.$emit('set locale', lang)
+    },
     handleLogOut () {
       this.$store.dispatch('logUserOut')
     }
@@ -64,15 +91,14 @@ export default {
   align-items: center;
 }
 
-.navbar {
-  ul {
-    li {
-      .icon {
-
-      }
+.main-navbar {
+  .el-radio-group {
+    label {
+      margin-bottom: 0;
     }
   }
 }
+
 </style>
 
 

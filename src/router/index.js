@@ -6,6 +6,7 @@ import Showcase from '@/components/Showcase'
 import Error404 from '@/components/404'
 import Blog from '@/components/Blog'
 import Login from '@/components/Login'
+import Dashboard from '@/components/Dashboard'
 Vue.use(Router)
 
 export default new Router({
@@ -27,9 +28,14 @@ export default new Router({
       component: Showcase
     },
     {
-      path: '/admin',
+      path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/dashboard',
+      name: 'Dashboard',
+      component: Dashboard
     },
     {
       path: '/blog',
