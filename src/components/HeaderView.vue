@@ -94,6 +94,12 @@ export default {
 }
 
 .main-navbar {
+  .dropdown-menu {
+    .active {
+      color: $color-white !important;
+    }
+
+  }
   .el-radio-group {
     label {
       margin-bottom: 0;

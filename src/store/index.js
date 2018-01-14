@@ -6,9 +6,8 @@ import auth from '../db/auth'
 import storage from '../db/storage'
 
 Vue.use(Vuex)
-
+const uuid = require('uuid/v1')
 const blogPostsRef = db.collection('blogPosts')
-const storageRef = storage.ref().child('blogImages')
 
 const store = new Vuex.Store({
   state: {
@@ -18,7 +17,9 @@ const store = new Vuex.Store({
       uid: '',
       email: ''
     },
-    blogPosts: [],
+    blogPosts: [
+      undefined
+    ],
     devIcons: [
       {
         title: `JavaScript`,
@@ -176,7 +177,6 @@ const store = new Vuex.Store({
       }
     },
     getUserStatus (state) {
-      // console.log(blogPostsRef)
       return state.userStatus
     },
     getUserUid (state) {
@@ -200,7 +200,6 @@ const store = new Vuex.Store({
   },
   actions: {
     logUserIn ({commit}, payload) {
-      console.log('will do')
       return auth.signInWithEmailAndPassword(
         payload.email,
         payload.password)
@@ -231,20 +230,24 @@ const store = new Vuex.Store({
           })
         })
     },
-    async postNewBlog ({commit}, payload) {
+    postNewBlog ({commit}, payload) {
       return blogPostsRef.add(payload)
+    },
+    editExistingBlog ({commit}, payload) {
+      let id = payload.id
+      let formData = payload.form
+      return blogPostsRef.doc(id).set(formData)
     },
     deleteBlogPost ({commit}, payload) {
       return blogPostsRef.doc(payload).delete()
     },
     assignName ({commit, state}, payload) {
-      console.log(payload.name)
       return db.collection(`users/${state.userStatus.uid}/nameData`).doc('names').set({
         name: payload.name
       })
     },
     uploadImage ({commit}, payload) {
-      return storageRef.put(payload)
+      return storage.ref().child(uuid()).put(payload)
     }
   },
   mutations: {
