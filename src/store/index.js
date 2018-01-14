@@ -16,6 +16,7 @@ const store = new Vuex.Store({
       uid: '',
       email: ''
     },
+    blogPosts: [],
     devIcons: [
       {
         title: `JavaScript`,
@@ -179,6 +180,9 @@ const store = new Vuex.Store({
     getUserUid (state) {
       return state.userStatus.uid
     },
+    getBlogPosts (state) {
+      return state.blogPosts
+    },
     getDevIcons (state) {
       return state.devIcons
     },
@@ -210,8 +214,25 @@ const store = new Vuex.Store({
         }
       })
     },
+    async getBlogPosts ({commit}) {
+      console.log('will get posts')
+      blogPostsRef
+        .onSnapshot((snapshot) => {
+          commit('resetBlogPosts')
+          snapshot.forEach((doc) => {
+            let data = doc.data()
+            let id = doc.id
+            let post = { ...data, id }
+            console.log({post})
+            commit('setBlogPosts', post)
+          })
+        })
+    },
     async postNewBlog ({commit}, payload) {
       return blogPostsRef.add(payload)
+    },
+    deleteBlogPost ({commit}, payload) {
+      return blogPostsRef.doc(payload).delete()
     },
     assignName ({commit, state}, payload) {
       console.log(payload.name)
@@ -236,6 +257,12 @@ const store = new Vuex.Store({
     },
     setUserStatus (state, payload) {
       state.userStatus = {...state.userStatus, ...payload}
+    },
+    setBlogPosts (state, payload) {
+      state.blogPosts.push(payload)
+    },
+    resetBlogPosts (state) {
+      state.blogPosts = []
     }
   }
 })

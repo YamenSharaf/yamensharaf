@@ -40,6 +40,7 @@ export default {
     return {
       loading: false,
       blogForm: {
+        date: null,
         title: ``,
         body: ``,
         userUid: '',
@@ -55,6 +56,7 @@ export default {
   methods: {
     handlePostBlog () {
       this.loading = true
+      this.blogForm.date = new Date()
       this.$store.dispatch('postNewBlog', this.blogForm)
         .then(() => {
           this.loading = false

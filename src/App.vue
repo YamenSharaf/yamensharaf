@@ -46,6 +46,9 @@ export default {
     monitorUserStatus () {
       this.$store.dispatch('monitorUserStatus')
     },
+    getLatestPosts () {
+      this.$store.dispatch('getBlogPosts')
+    },
     listenForLocaleChange () {
       this.$bus.$on('set locale', (lang) => {
         this.locale = lang
@@ -55,6 +58,7 @@ export default {
   mounted () {
     this.listenForLocaleChange()
     this.monitorUserStatus()
+    this.getLatestPosts()
   }
 }
 </script>

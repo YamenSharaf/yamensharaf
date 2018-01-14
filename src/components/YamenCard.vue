@@ -28,6 +28,7 @@
           :open-delay="500"
           :content="$t(`message.meComment`)">
           <img
+            @click="handleEasterEgg"
             class="img-fluid img-dimmed"
             src="../assets/img/yamen.jpg"
             title="Yamen Sharaf"
@@ -40,12 +41,31 @@
 
 <script>
 export default {
+  data () {
+    return {
+      easterEggCount: 0
+    }
+  },
+  watch: {
+    easterEggCount (value) {
+      if (value === 5) {
+        this.$router.push({ name: 'Login' })
+        this.$message.success(`Welcome back, Yamen 😉`)
+        this.value = 0
+      }
+    }
+  },
   computed: {
     yamenDesc () {
       return this.$store.getters.getYamenDesc
     },
     font () {
       return this.$store.getters.getFont
+    }
+  },
+  methods: {
+    handleEasterEgg () {
+      this.easterEggCount++
     }
   }
 }
