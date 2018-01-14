@@ -219,7 +219,7 @@ const store = new Vuex.Store({
       })
     },
     getBlogPosts ({commit}) {
-      blogPostsRef
+      blogPostsRef.orderBy('date', 'desc')
         .onSnapshot((snapshot) => {
           commit('resetBlogPosts')
           snapshot.forEach((doc) => {

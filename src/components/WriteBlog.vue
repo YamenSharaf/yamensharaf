@@ -11,6 +11,9 @@
           <h2 v-else class="h2 text-primary">
             Edit blog post
           </h2>
+            <el-button @click="$router.go(-1)" icon="el-icon-back">
+              Back
+            </el-button>
         </div>
       </div>
       <div class="col-md-8 d-flex flex-center">
