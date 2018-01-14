@@ -14,7 +14,7 @@
         <img @load="HandleImageLoad" class="img-fluid" :src="post.imageUrl" :alt="post.title">
       </div>
       <div v-if="post.body" class="col-md-12 mt-5">
-        <p v-html="post.body" class="h9 text-danger text-center">
+        <p v-html="post.body" class="text-center">
         </p>
       </div>
     </div>
