@@ -8,6 +8,7 @@ import Blog from '@/components/Blog'
 import Login from '@/components/Login'
 import Dashboard from '@/components/Dashboard'
 import WriteBlog from '@/components/WriteBlog'
+import ViewPost from '@/components/ViewPost'
 Vue.use(Router)
 
 export default new Router({
@@ -39,9 +40,14 @@ export default new Router({
       component: Dashboard
     },
     {
-      path: '/new/post',
+      path: '/post/new',
       name: 'WriteBlog',
       component: WriteBlog
+    },
+    {
+      path: '/post/view/:postId',
+      name: 'ViewPost',
+      component: ViewPost
     },
     {
       path: '/blog',

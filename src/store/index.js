@@ -3,10 +3,12 @@ import Vuex from 'vuex'
 import {app} from '../main'
 import db from '../db'
 import auth from '../db/auth'
+import storage from '../db/storage'
 
 Vue.use(Vuex)
 
 const blogPostsRef = db.collection('blogPosts')
+const storageRef = storage.ref().child('blogImages')
 
 const store = new Vuex.Store({
   state: {
@@ -183,6 +185,9 @@ const store = new Vuex.Store({
     getBlogPosts (state) {
       return state.blogPosts
     },
+    getBlogPost: (state) => (id) => {
+      return state.blogPosts.filter((post) => post.id === id)[0]
+    },
     getDevIcons (state) {
       return state.devIcons
     },
@@ -214,8 +219,7 @@ const store = new Vuex.Store({
         }
       })
     },
-    async getBlogPosts ({commit}) {
-      console.log('will get posts')
+    getBlogPosts ({commit}) {
       blogPostsRef
         .onSnapshot((snapshot) => {
           commit('resetBlogPosts')
@@ -223,7 +227,6 @@ const store = new Vuex.Store({
             let data = doc.data()
             let id = doc.id
             let post = { ...data, id }
-            console.log({post})
             commit('setBlogPosts', post)
           })
         })
@@ -240,14 +243,8 @@ const store = new Vuex.Store({
         name: payload.name
       })
     },
-    fetchNameData ({commit, state}) {
-      db.collection(`users/${state.userStatus.uid}/nameData`).doc('names').onSnapshot((doc) => {
-        if (doc && doc.exists) {
-          commit('setServerName', {
-            name: doc.data().name
-          })
-        }
-      })
+    uploadImage ({commit}, payload) {
+      return storageRef.put(payload)
     }
   },
   mutations: {

@@ -28,6 +28,22 @@
 
         </div>
       </div>
+      <div class="col-md-4 d-flex flex-column flex-center">
+        <h4 class="h9 text-dark">
+          Post preview image
+        </h4>
+        <el-upload
+          v-loading="imageLoading"
+          class="avatar-uploader"
+          :http-request="handleFileUpload"
+          action=""
+          :show-file-list="false"
+          :on-success="handleAvatarSuccess"
+          :before-upload="beforeAvatarUpload">
+          <img v-if="imageUrl" :src="imageUrl" class="avatar img-fluid">
+          <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+        </el-upload>
+      </div>
     </div>
   </div>
 </div>
@@ -39,8 +55,11 @@ export default {
   data () {
     return {
       loading: false,
+      imageLoading: false,
+      imageUrl: '',
       blogForm: {
         date: null,
+        imageUrl: ``,
         title: ``,
         body: ``,
         userUid: '',
@@ -54,6 +73,35 @@ export default {
     }
   },
   methods: {
+    handleAvatarSuccess (res, file) {
+      this.imageUrl = URL.createObjectURL(file.raw)
+    },
+    beforeAvatarUpload (file) {
+      console.log('file', file)
+      // const fileEx = (/[.]/.exec(file.name)) ? /[^.]+$/.exec(file.name)[0] : undefined
+      const isJPG = file.type === 'image/jpeg'
+      const isLt2M = file.size / 1024 / 1024 < 2
+      if (!isJPG) {
+        this.$message.error('Avatar picture must be JPG format!')
+      }
+      if (!isLt2M) {
+        this.$message.error('Avatar picture size can not exceed 2MB!')
+      }
+      return isJPG && isLt2M
+    },
+    handleFileUpload (file) {
+      this.imageLoading = true
+      this.$store.dispatch('uploadImage', file.file)
+        .then((res) => {
+          this.imageLoading = false
+          this.imageUrl = this.blogForm.imageUrl = res.downloadURL
+          this.$message.success(`Image uploaded successfully`)
+        })
+        .catch((error) => {
+          this.imageLoading = false
+          this.$message.error(`Error: ${error}`)
+        })
+    },
     handlePostBlog () {
       this.loading = true
       this.blogForm.date = new Date()

@@ -1,7 +1,18 @@
 <template>
 <div class="container dashboard-page">
   <div class="row page-wrapper">
-    <div class="col-md-12 d-flex flex-center">
+    <div class="col-md-12 d-flex flex-column flex-center">
+      <div class="w-100 d-flex px-3 py-2 bg-gray justify-content-between align-center">
+        <h2 class="h2 text-primary">
+          Blog posts
+        </h2>
+        <router-link :to="{ name: 'WriteBlog' }" >
+          <el-button>
+            Add a blog post
+          </el-button>
+        </router-link>
+      </div>
+        <hr>
       <el-table
         :data="blogPosts"
         style="width: 100%">
@@ -15,8 +26,10 @@
         <el-table-column
           label="Title">
           <template slot-scope="scope">
-            <i class="el-icon-time"></i>
-            <span style="margin-left: 10px">{{ scope.row.title }}</span>
+            <router-link :to=" { name: 'ViewPost', params: { postId: scope.row.id } } " >
+              <i class="el-icon-time"></i>
+              <span style="margin-left: 10px">{{ scope.row.title }}</span>
+            </router-link>
           </template>
         </el-table-column>
         <el-table-column
@@ -36,13 +49,6 @@
           </template>
         </el-table-column>
       </el-table>
-    </div>
-    <div class="col-md-12 d-flex flex-center">
-        <router-link :to="{ name: 'WriteBlog' }" >
-          <el-button>
-            Add a blog post
-          </el-button>
-        </router-link>
     </div>
   </div>
 </div>
