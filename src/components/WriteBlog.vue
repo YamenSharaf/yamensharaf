@@ -56,16 +56,16 @@ export default {
     handlePostBlog () {
       this.loading = true
       this.$store.dispatch('postNewBlog', this.blogForm)
-      .then(() => {
-        this.loading = false
-        this.$message.success(`Posted successfully`)
-        Object.assign(this.$data, this.$options.data.apply(this))
-        this.$router.push({ name: 'Home' })
-      })
-      .catch((error) => {
-        this.loading = false
-        this.$message.error(error)
-      })
+        .then(() => {
+          this.loading = false
+          this.$message.success(`Posted successfully`)
+          Object.assign(this.$data, this.$options.data.apply(this))
+          this.$router.push({ name: 'Dashboard' })
+        })
+        .catch((error) => {
+          this.loading = false
+          this.$message.error(error)
+        })
     }
   },
   mounted () {

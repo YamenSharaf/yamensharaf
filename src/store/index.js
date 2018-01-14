@@ -173,8 +173,11 @@ const store = new Vuex.Store({
       }
     },
     getUserStatus (state) {
-      console.log(blogPostsRef)
+      // console.log(blogPostsRef)
       return state.userStatus
+    },
+    getUserUid (state) {
+      return state.userStatus.uid
     },
     getDevIcons (state) {
       return state.devIcons
@@ -204,6 +207,24 @@ const store = new Vuex.Store({
         } else {
           // User signed out
           commit('setUserStatus', { loggedIn: false, uid: '', email: '' })
+        }
+      })
+    },
+    async postNewBlog ({commit}, payload) {
+      return blogPostsRef.add(payload)
+    },
+    assignName ({commit, state}, payload) {
+      console.log(payload.name)
+      return db.collection(`users/${state.userStatus.uid}/nameData`).doc('names').set({
+        name: payload.name
+      })
+    },
+    fetchNameData ({commit, state}) {
+      db.collection(`users/${state.userStatus.uid}/nameData`).doc('names').onSnapshot((doc) => {
+        if (doc && doc.exists) {
+          commit('setServerName', {
+            name: doc.data().name
+          })
         }
       })
     }

@@ -7,6 +7,7 @@ import Error404 from '@/components/404'
 import Blog from '@/components/Blog'
 import Login from '@/components/Login'
 import Dashboard from '@/components/Dashboard'
+import WriteBlog from '@/components/WriteBlog'
 Vue.use(Router)
 
 export default new Router({
@@ -36,6 +37,11 @@ export default new Router({
       path: '/dashboard',
       name: 'Dashboard',
       component: Dashboard
+    },
+    {
+      path: '/new/post',
+      name: 'WriteBlog',
+      component: WriteBlog
     },
     {
       path: '/blog',

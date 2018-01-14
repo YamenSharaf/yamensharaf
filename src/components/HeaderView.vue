@@ -38,11 +38,10 @@
           </b-nav-item>
           <b-nav-item :to="{ name: 'Showcase' }">{{ $t(`message.showcase`) }}</b-nav-item>
           <b-nav-item :to="{ name: 'Blog' }"> {{ $t(`message.blog`) }} </b-nav-item>
-          <b-nav-item v-if="userStatus.loggedIn">
-            <el-button @click="handleLogOut" icon="mdi mdi-logout-variant">
-              Log out
-            </el-button>
-          </b-nav-item>
+          <b-nav-item-dropdown v-if="userStatus.loggedIn" :text="userStatus.email.split('@')[0]" right>
+          <b-dropdown-item :to="{ name: 'Dashboard' }"> Dashboard </b-dropdown-item>
+          <b-dropdown-item @click="handleLogOut"> Log out </b-dropdown-item>
+        </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
       <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
@@ -71,6 +70,9 @@ export default {
     },
     handleLogOut () {
       this.$store.dispatch('logUserOut')
+        .then(() => {
+          this.$router({ name: 'Home' })
+        })
     }
   }
 }

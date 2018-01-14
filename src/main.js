@@ -9,6 +9,7 @@ import ElementUI from 'element-ui'
 import BootstrapVue from 'bootstrap-vue'
 import '@/sass/app.scss'
 import messages from './i18n'
+import wysiwyg from 'vue-wysiwyg'
 import locale from 'element-ui/lib/locale/lang/en'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
@@ -18,6 +19,7 @@ Vue.prototype.$bus = new Vue() // Global event bus
 Vue.use(ElementUI, {locale})
 Vue.use(BootstrapVue)
 Vue.use(VueI18n)
+Vue.use(wysiwyg, {})
 
 // Create VueI18n instance with options
 const i18n = new VueI18n({

@@ -1,10 +1,12 @@
 <template>
 <div class="container">
-  <div class="row">
-    <div class="col-md-12 page-wrapper d-flex flex-center">
-        <h1 class="display-4 text-primary text-center">
-          Welcome back, {{ user.email }}
-        </h1>
+  <div class="row page-wrapper">
+    <div class="col-md-12 d-flex flex-center">
+        <router-link :to="{ name: 'WriteBlog' }" >
+          <el-button>
+            Add a blog post
+          </el-button>
+        </router-link>
     </div>
   </div>
 </div>
