@@ -1,17 +1,23 @@
+import { Message } from 'element-ui'
 import Vue from 'vue'
 import Router from 'vue-router'
-// import store from '../store'
+import store from '../store'
 import Home from '@/components/Home'
 import Showcase from '@/components/Showcase'
 import Error404 from '@/components/404'
-import Blog from '@/components/Blog'
-import Login from '@/components/Login'
-import Dashboard from '@/components/Dashboard'
-import WriteBlog from '@/components/WriteBlog'
-import ViewPost from '@/components/ViewPost'
+
+// Blog section
+const Blog = r => require.ensure([], () => r(require('@/components/Blog')), 'blog')
+const ViewPost = r => require.ensure([], () => r(require('@/components/ViewPost')), 'blog')
+
+// Admin area
+const Login = r => require.ensure([], () => r(require('@/components/Login')), 'admin')
+const WriteBlog = r => require.ensure([], () => r(require('@/components/WriteBlog')), 'admin')
+const Dashboard = r => require.ensure([], () => r(require('@/components/Dashboard')), 'admin')
+
 Vue.use(Router)
 
-export default new Router({
+export const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -32,12 +38,34 @@ export default new Router({
     {
       path: '/login',
       name: 'Login',
-      component: Login
+      component: Login,
+      beforeEnter (to, from, next) {
+        if (!store.state.userStatus.loggedIn) {
+          next()
+        } else {
+          Message({
+            message: `You're already logged in`,
+            type: 'error'
+          })
+          next({ name: 'Login' })
+        }
+      }
     },
     {
       path: '/dashboard',
       name: 'Dashboard',
-      component: Dashboard
+      component: Dashboard,
+      beforeEnter (to, from, next) {
+        if (store.state.userStatus.loggedIn) {
+          next()
+        } else {
+          Message({
+            message: `Please log in to access the dashboard`,
+            type: 'error'
+          })
+          next({ name: 'Login' })
+        }
+      }
     },
     {
       path: '/post/new',
@@ -61,3 +89,10 @@ export default new Router({
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  // console.log('User Status', store.state.userStatus.loggedIn)
+  next()
+})
+
+export default router

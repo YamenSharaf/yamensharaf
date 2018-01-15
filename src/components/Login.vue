@@ -84,7 +84,7 @@ export default {
         .then(() => {
           this.loading = false
           this.$message.success(`Logged in successfully`)
-          this.$router.push({ name: 'Dashboard' })
+          this.$router.push({ name: 'Home' })
         })
         .catch((error) => {
           this.loading = false

@@ -71,7 +71,7 @@ export default {
     handleLogOut () {
       this.$store.dispatch('logUserOut')
         .then(() => {
-          this.$router({ name: 'Home' })
+          this.$router.push({ name: 'Home' })
         })
     }
   }
