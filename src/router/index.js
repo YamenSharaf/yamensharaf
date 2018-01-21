@@ -2,9 +2,13 @@ import { Message } from 'element-ui'
 import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store'
+
+// Essential routes
 import Home from '@/components/Home'
-import Showcase from '@/components/Showcase'
 import Error404 from '@/components/404'
+
+// Showcase section
+const Showcase = r => require.ensure([], () => r(require('@/components/Showcase')), 'blog')
 
 // Blog section
 const Blog = r => require.ensure([], () => r(require('@/components/Blog')), 'blog')
