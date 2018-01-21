@@ -174,9 +174,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../node_modules/quill/dist/quill.core.css";
-@import "../../node_modules/quill/dist/quill.snow.css";
-@import "../../node_modules/quill/dist/quill.bubble.css";
+@import "~quill/dist/quill.core.css";
+@import "~quill/dist/quill.snow.css";
+@import "~quill/dist/quill.bubble.css";
 
 .write-blog {
   .quill-editor {
