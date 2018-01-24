@@ -6,12 +6,9 @@ import store from '../store'
 // Essential routes
 import Home from '@/components/Home'
 import Error404 from '@/components/404'
+import Blog from '@/components/Blog'
+import Showcase from '@/components/Showcase'
 
-// Showcase section
-const Showcase = r => require.ensure([], () => r(require('@/components/Showcase')), 'blog')
-
-// Blog section
-const Blog = r => require.ensure([], () => r(require('@/components/Blog')), 'blog')
 const ViewPost = r => require.ensure([], () => r(require('@/components/ViewPost')), 'blog')
 
 // Admin area

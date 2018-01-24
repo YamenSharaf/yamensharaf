@@ -7,6 +7,7 @@ import store from './store'
 import VueI18n from 'vue-i18n'
 import ElementUI from 'element-ui'
 import BootstrapVue from 'bootstrap-vue'
+import VueAnalytics from 'vue-analytics'
 import AOS from 'aos'
 import '@/sass/app.scss'
 import messages from './i18n'
@@ -20,7 +21,10 @@ Vue.prototype.$bus = new Vue() // Global event bus
 Vue.use(ElementUI, {locale})
 Vue.use(BootstrapVue)
 Vue.use(VueI18n)
-// Vue.use(wysiwyg, {})
+Vue.use(VueAnalytics, {
+  id: `UA-113033694-1`,
+  router
+})
 
 // Create VueI18n instance with options
 const i18n = new VueI18n({

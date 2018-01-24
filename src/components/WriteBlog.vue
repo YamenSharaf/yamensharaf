@@ -22,7 +22,7 @@
             <el-input v-model="blogForm.title" class="w-100" placeholder="Enter blog title"/>
           </div>
           <div class="col-md-12 d-flex flex-center mt-3">
-            <wysiwyg v-model="blogForm.body" placeholder="Write blog"/>
+            <wysiwyg v-model="blogForm.body" :options="editorOptions" placeholder="Write blog"/>
           </div>
         </div>
       </div>
@@ -68,6 +68,7 @@
 
 <script>
 import { quillEditor } from 'vue-quill-editor'
+import {quillRedefine} from 'vue-quill-editor-upload'
 export default {
   components: {
     'wysiwyg': quillEditor
@@ -78,6 +79,7 @@ export default {
       editId: null,
       loading: false,
       imageLoading: false,
+      editorOptions: {},
       blogForm: {
         date: null,
         imageUrl: ``,
@@ -163,6 +165,13 @@ export default {
       const currentPost = this.getOldPostData(id)
       this.blogForm = { ...this.blogForm, ...currentPost }
     }
+  },
+  created () {
+    this.editorOption = quillRedefine({
+      uplpadConfig: {
+        // https://github.com/NextBoy/vue-quill-editor-upload
+      }
+    })
   },
   mounted () {
     this.blogForm.userUid = this.userUid
