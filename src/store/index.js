@@ -8,7 +8,7 @@ import storage from '../db/storage'
 Vue.use(Vuex)
 const uuid = require('uuid/v1')
 const blogPostsRef = db.collection('blogPosts')
-const resumeRef = storage.ref().child('Resume - Yamen Sharaf')
+const resumeRef = storage.ref().child('Resume - Yamen Sharaf.pdf')
 
 const store = new Vuex.Store({
   state: {
