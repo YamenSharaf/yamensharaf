@@ -1,5 +1,5 @@
 <template>
-  <div class="container page-wrapper">
+  <div v-loading="postLoading" class="container page-wrapper">
     <div class="row flex-center mt-5">
       <div v-if="post.title" class="col-md-12 mt-5">
         <h1 class="h1 text-primary text-center font-title">
@@ -16,7 +16,7 @@
     </div>
     <div class="row mt-3 mb-5">
       <div v-if="post.body" class="col-md-12 mt-5 mb-5">
-        <p v-html="post.body" class="text-center"></p>
+        <span class="ql-snow" v-html="post.body"></span>
       </div>
     </div>
   </div>
@@ -26,21 +26,35 @@
 export default {
   data () {
     return {
-      imageLoading: true
+      postLoading: true,
+      imageLoading: true,
+      post: {}
     }
   },
   computed: {
     postId () {
       return this.$route.params.postId
-    },
-    post () {
-      return this.$store.getters.getBlogPost(this.postId)
     }
   },
   methods: {
     HandleImageLoad () {
       this.imageLoading = false
+    },
+    fetchPostData () {
+      this.$store.dispatch('fetchBlogPost', this.postId)
+        .then(res => {
+          let postData = res.data()
+          this.postLoading = false
+          this.post = postData
+        })
+        .catch(err => {
+          this.postLoading = false
+          this.$message.error(`Error: ${err}`)
+        })
     }
+  },
+  mounted () {
+    this.fetchPostData()
   }
 }
 </script>

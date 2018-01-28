@@ -103,15 +103,15 @@ export default {
       this.imageUrl = URL.createObjectURL(file.raw)
     },
     beforeAvatarUpload (file) {
-      const isJPG = file.type === 'image/jpeg'
+      const isImage = file.type === 'image/jpeg' || file.type === 'image/png'
       const isLt2M = file.size / 1024 / 1024 < 2
-      if (!isJPG) {
-        this.$message.error('Avatar picture must be JPG format!')
+      if (!isImage) {
+        this.$message.error('Avatar picture must be JPG or PNG format!')
       }
       if (!isLt2M) {
         this.$message.error('Avatar picture size can not exceed 2MB!')
       }
-      return isJPG && isLt2M
+      return isImage && isLt2M
     },
     handleFileUpload (file) {
       this.imageLoading = true
@@ -183,9 +183,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~quill/dist/quill.core.css";
-@import "~quill/dist/quill.snow.css";
-@import "~quill/dist/quill.bubble.css";
 
 .write-blog {
   .quill-editor {

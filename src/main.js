@@ -14,6 +14,9 @@ import messages from './i18n'
 import locale from 'element-ui/lib/locale/lang/en'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'aos/dist/aos.css'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 
 Vue.config.productionTip = false
 Vue.prototype.$bus = new Vue() // Global event bus

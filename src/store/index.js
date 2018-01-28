@@ -230,6 +230,9 @@ const store = new Vuex.Store({
           })
         })
     },
+    fetchBlogPost ({commit}, payload) {
+      return blogPostsRef.doc(payload).get()
+    },
     postNewBlog ({commit}, payload) {
       return blogPostsRef.add(payload)
     },

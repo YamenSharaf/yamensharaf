@@ -2,7 +2,7 @@
   <div
     :dir=" lang === 'ar' ? 'rtl' : 'ltr' "
     :style="font.primary"
-    class="position-relative h-100">
+    class="position-relative page-wrapper h-100">
     <header-view/>
       <transition
         name="fade"

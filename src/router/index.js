@@ -7,9 +7,8 @@ import store from '../store'
 import Home from '@/components/Home'
 import Error404 from '@/components/404'
 import Blog from '@/components/Blog'
+import ViewPost from '@/components/ViewPost'
 import Showcase from '@/components/Showcase'
-
-const ViewPost = r => require.ensure([], () => r(require('@/components/ViewPost')), 'blog')
 
 // Admin area
 const Login = r => require.ensure([], () => r(require('@/components/Login')), 'admin')
