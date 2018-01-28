@@ -8,10 +8,12 @@ import storage from '../db/storage'
 Vue.use(Vuex)
 const uuid = require('uuid/v1')
 const blogPostsRef = db.collection('blogPosts')
+const resumeRef = storage.ref().child('Resume - Yamen Sharaf')
 
 const store = new Vuex.Store({
   state: {
     lang: 'en',
+    resumeUrl: '',
     userStatus: {
       loggedIn: false,
       uid: '',
@@ -150,6 +152,9 @@ const store = new Vuex.Store({
     getLocale () {
       return app.$i18n.locale
     },
+    getResumeUrl (state) {
+      return state.resumeUrl
+    },
     getLang (state) {
       return state.lang
     },
@@ -251,12 +256,27 @@ const store = new Vuex.Store({
     },
     uploadImage ({commit}, payload) {
       return storage.ref().child(uuid()).put(payload)
+    },
+    uploadResume ({commit}, payload) {
+      return resumeRef.put(payload)
+    },
+    fetchResumeUrl ({commit}) {
+      resumeRef.getDownloadURL()
+        .then(fileUrl => {
+          commit('setResumeUrl', fileUrl)
+        })
+        .catch(err => {
+          console.log(`Error: ${err} `)
+        })
     }
   },
   mutations: {
     setLocale (state, payload) {
       app.$i18n.locale = payload
       state.lang = payload
+    },
+    setResumeUrl (state, payload) {
+      state.resumeUrl = payload
     },
     setUserStatus (state, payload) {
       state.userStatus = {...state.userStatus, ...payload}

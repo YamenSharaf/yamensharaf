@@ -31,7 +31,12 @@
               {{ $t(`message.contact`) }}
             </el-button>
           </b-nav-item>
-          <b-nav-item href="https://cl.ly/okgs/download/Resume%20-%20Yamen%20Sharaf.pdf">
+          <b-nav-item v-if="resumeUrl" :href="resumeUrl">
+            <el-button icon="el-icon-download">
+              {{ $t(`message.resume`) }}
+            </el-button>
+          </b-nav-item>
+          <b-nav-item v-else href="https://cl.ly/okgs/download/Resume%20-%20Yamen%20Sharaf.pdf">
             <el-button icon="el-icon-download">
               {{ $t(`message.resume`) }}
             </el-button>
@@ -62,6 +67,14 @@ export default {
     },
     font () {
       return this.$store.getters.getFont
+    },
+    resumeUrl: {
+      get () {
+        return this.$store.getters.getResumeUrl
+      },
+      set (value) {
+        this.$store.commit('setResumeUrl')
+      }
     }
   },
   methods: {

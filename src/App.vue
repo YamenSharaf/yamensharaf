@@ -43,6 +43,9 @@ export default {
     }
   },
   methods: {
+    getResumeUrl () {
+      this.$store.dispatch('fetchResumeUrl')
+    },
     monitorUserStatus () {
       this.$store.dispatch('monitorUserStatus')
     },
@@ -59,6 +62,7 @@ export default {
     this.listenForLocaleChange()
     this.monitorUserStatus()
     this.getLatestPosts()
+    this.getResumeUrl()
   }
 }
 </script>
