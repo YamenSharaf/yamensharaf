@@ -16,7 +16,10 @@
     </div>
     <div class="row mt-3 mb-5">
       <div v-if="post.body" class="col-md-12 mt-5 mb-5">
-        <span class="ql-snow" v-html="post.body"></span>
+        <span class="ql-snow">
+          <span class="ql-editor" v-html="post.body">
+          </span>
+        </span>
       </div>
     </div>
   </div>
