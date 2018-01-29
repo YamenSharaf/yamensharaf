@@ -13,7 +13,7 @@ const resumeRef = storage.ref().child('Resume - Yamen Sharaf.pdf')
 const store = new Vuex.Store({
   state: {
     lang: 'en',
-    resumeUrl: '',
+    resumeUrl: 'https://cl.ly/okgs/download/Resume%20-%20Yamen%20Sharaf.pdf',
     userStatus: {
       loggedIn: false,
       uid: '',
@@ -22,6 +22,9 @@ const store = new Vuex.Store({
     blogPosts: [
       undefined
     ],
+    disqusConfig: {
+      shortname: `yamensharaf`
+    },
     devIcons: [
       {
         title: `JavaScript`,
@@ -54,6 +57,10 @@ const store = new Vuex.Store({
       {
         title: `Gulp`,
         icon: `devicon-gulp-plain`
+      },
+      {
+        title: `Foundation for email`,
+        icon: `devicon-foundation-plain`
       },
       {
         title: `HTML`,
@@ -192,6 +199,9 @@ const store = new Vuex.Store({
     },
     getBlogPost: (state) => (id) => {
       return state.blogPosts.filter((post) => post.id === id)[0]
+    },
+    getDisqusConfig (state) {
+      return state.disqusConfig
     },
     getDevIcons (state) {
       return state.devIcons

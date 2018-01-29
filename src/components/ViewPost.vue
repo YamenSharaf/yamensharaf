@@ -22,11 +22,20 @@
         </span>
       </div>
     </div>
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <disqus :shortname="disqusConfig.shortname" :identifier="postId" :url="url"/>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import VueDisqus from 'vue-disqus/VueDisqus.vue'
 export default {
+  components: {
+    'disqus': VueDisqus
+  },
   data () {
     return {
       postLoading: true,
@@ -37,6 +46,12 @@ export default {
   computed: {
     postId () {
       return this.$route.params.postId
+    },
+    url () {
+      return window.location.href
+    },
+    disqusConfig () {
+      return this.$store.getters.getDisqusConfig
     }
   },
   methods: {
