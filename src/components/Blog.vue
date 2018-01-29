@@ -1,13 +1,14 @@
 <template>
-<div class="container page-wrapper">
+<div v-loading="postsLoading" class="container page-wrapper">
   <div class="row">
     <div class="col-md-12 d-flex flex-center">
     </div>
   </div>
   <div class="row">
-    <div 
-      v-for="(post, index) in blogPosts" 
-      :key="index" 
+    <div
+      v-if="blogPosts.length > 0"
+      v-for="(post, index) in blogPosts"
+      :key="index"
       :data-aos=" ((index/ 2) === 0 || (index/2) === 1) ?  `fade-up-right` : `fade-up-left`"
       data-aos-duration="1000"
       class="col-md-6 d-flex flex-center p-3">
@@ -21,6 +22,11 @@
         </el-card>
       </router-link>
     </div>
+    <div v-else class="col-12 d-flex flex-center">
+      <span class="h1 text-primary text-center">
+        No posts yet
+      </span>
+    </div>
   </div>
 </div>
 </template>
@@ -30,13 +36,36 @@
 export default {
   data () {
     return {
-      msg: 'Blog Component'
+      postsLoading: true,
+      posts: []
     }
   },
   computed: {
     blogPosts () {
-      return this.$store.getters.getBlogPosts
+      // Getting public posts
+      return this.posts.filter(post => post.visibility === 'public')
     }
+  },
+  methods: {
+    getBlogPosts () {
+      this.$store.dispatch('fetchBlogPosts')
+        .then(res => {
+          this.postsLoading = false
+          res.forEach(doc => {
+            let data = doc.data()
+            let id = doc.id
+            let post = { ...data, id }
+            this.posts.push(post)
+          })
+        })
+        .catch(err => {
+          this.postsLoading = false
+          this.$message.error(`Error: ${err} `)
+        })
+    }
+  },
+  mounted () {
+    this.getBlogPosts()
   }
 }
 </script>

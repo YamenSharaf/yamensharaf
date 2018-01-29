@@ -3,7 +3,7 @@
     <div class="col-md-12 d-flex flex-column flex-center">
       <div class="w-100 d-flex px-3 py-2 bg-gray justify-content-between align-center">
         <h2 class="h2 text-primary">
-          <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+          <i class="mdi mdi-file-pdf" aria-hidden="true"></i>
           Manage Resume
         </h2>
       </div>
@@ -11,7 +11,10 @@
     <div class="col-md-12 d-flex justify-content-between align-center mt-2">
 
       <a v-if="resumeUrl" :href="resumeUrl">
-        Download Resume
+        <strong>
+          <i class="mdi mdi-download"></i>
+          Download Resume
+        </strong>
       </a>
       <a v-else class="text-muted" href="javascript;">
         No resume available
@@ -21,7 +24,10 @@
         :show-file-list="false"
         :http-request="handleFileUpload"
         action="">
-        <el-button :loading="uploadLoading" type="primary">Click to upload</el-button>
+        <el-button
+          icon="el-icon-upload2"
+          :loading="uploadLoading"
+          type="primary">Click to upload</el-button>
         <!-- <div slot="tip" class="el-upload__tip">jpg/png files with a size less than 500kb</div> -->
       </el-upload>
     </div>

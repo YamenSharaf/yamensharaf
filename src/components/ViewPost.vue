@@ -1,6 +1,28 @@
 <template>
-  <div v-loading="postLoading" class="container page-wrapper">
+  <div v-loading="postLoading" class="view-post container page-wrapper">
     <div class="row flex-center mt-5">
+      <div v-if="post.visibility === 'private'" class="col-12">
+        <el-alert
+          :closable="false"
+          title="Private post"
+          type="warning"
+          show-icon>
+          <div class="d-flex justify-content-between align-center">
+            <p class="mb-0">
+              This is a private post. People can only view this post by its link
+            </p>
+            <el-button
+              icon="mdi mdi-content-copy"
+              type="warning"
+              plain
+              v-clipboard:copy="url"
+              v-clipboard:success="handleCopySuccess"
+              v-clipboard:error="handleCopyError">
+              Copy link
+            </el-button>
+          </div>
+        </el-alert>
+      </div>
       <div v-if="post.title" class="col-md-12 mt-5">
         <h1 class="h1 text-primary text-center font-title">
           {{ post.title }}
@@ -24,7 +46,7 @@
     </div>
     <div class="row mt-5">
       <div class="col-md-12">
-        <disqus :shortname="disqusConfig.shortname" :identifier="postId" :url="url"/>
+        <disqus v-if="!postLoading" :shortname="disqusConfig.shortname" :identifier="postId" :url="url"/>
       </div>
     </div>
   </div>
@@ -58,6 +80,12 @@ export default {
     HandleImageLoad () {
       this.imageLoading = false
     },
+    handleCopySuccess () {
+      this.$message.success(`Copied link successfully`)
+    },
+    handleCopyError () {
+      this.$message.error(`Could not copy link. Copy it from the address bar yourself like a man`)
+    },
     fetchPostData () {
       this.$store.dispatch('fetchBlogPost', this.postId)
         .then(res => {
@@ -76,3 +104,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.view-post {
+  .el-alert {
+    &__content {
+      // display: flex;
+      width: 100%;
+    }
+  }
+}
+</style>

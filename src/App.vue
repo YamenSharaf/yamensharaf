@@ -58,7 +58,7 @@ export default {
       })
     }
   },
-  mounted () {
+  created () {
     this.listenForLocaleChange()
     this.monitorUserStatus()
     this.getLatestPosts()

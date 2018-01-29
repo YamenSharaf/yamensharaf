@@ -12,6 +12,7 @@ import AOS from 'aos'
 import '@/sass/app.scss'
 import messages from './i18n'
 import locale from 'element-ui/lib/locale/lang/en'
+import VueClipboard from 'vue-clipboard2'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'aos/dist/aos.css'
 import 'quill/dist/quill.core.css'
@@ -24,6 +25,7 @@ Vue.prototype.$bus = new Vue() // Global event bus
 Vue.use(ElementUI, {locale})
 Vue.use(BootstrapVue)
 Vue.use(VueI18n)
+Vue.use(VueClipboard)
 Vue.use(VueAnalytics, {
   id: `UA-113033694-1`,
   router

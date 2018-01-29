@@ -245,6 +245,9 @@ const store = new Vuex.Store({
           })
         })
     },
+    fetchBlogPosts ({commit}) {
+      return blogPostsRef.orderBy('date', 'desc').get()
+    },
     fetchBlogPost ({commit}, payload) {
       return blogPostsRef.doc(payload).get()
     },
