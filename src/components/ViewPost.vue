@@ -92,6 +92,7 @@ export default {
           let postData = res.data()
           this.postLoading = false
           this.post = postData
+          document.title = `${this.post.title} | ${document.title}`
         })
         .catch(err => {
           this.postLoading = false
