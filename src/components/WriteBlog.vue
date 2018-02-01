@@ -185,10 +185,19 @@ export default {
       const currentPost = this.getOldPostData(id)
       this.blogForm = { ...this.blogForm, ...currentPost }
     },
+    getTags () {
+      this.$store.dispatch('fetchBlogTags')
+        .then(tags => {
+          this.existingTags = tags
+          console.log(tags)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
     updateTags (tags) {
       let newTags = [...this.existingTags, ...tags]
-      let noDuplicateTags = [...new Set(newTags)]
-      this.$store.dispatch('updateBlogTags', noDuplicateTags)
+      this.$store.dispatch('updateBlogTags', newTags)
         .then(() => {
           this.$message.success(`updated tags`)
         })
@@ -205,14 +214,7 @@ export default {
     })
   },
   mounted () {
-    this.$store.dispatch('fetchBlogTags')
-      .then(tags => {
-        this.existingTags = tags
-        console.log(tags)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    this.getTags()
     this.blogForm.userUid = this.userUid
     if (this.routeParams.id) {
       this.initEditMode(this.routeParams.id)

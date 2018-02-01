@@ -4,7 +4,7 @@
       <div class="w-100 d-flex px-3 py-2 bg-gray justify-content-between align-center">
         <h2 class="h2 text-primary">
           <i class="mdi mdi-format-list-bulleted"></i>
-          Blog posts
+          Manage Blog posts
         </h2>
         <router-link :to="{ name: 'WriteBlog' }" >
           <el-button icon="el-icon-circle-plus-outline">

@@ -256,8 +256,9 @@ const store = new Vuex.Store({
     },
     updateBlogTags ({commit}, payload) {
       const newTags = payload
+      let noDuplicateTags = [...new Set(newTags)]
       return blogTagsRef.set({
-        tags: newTags
+        tags: noDuplicateTags
       })
     },
     fetchBlogPost ({commit}, payload) {
