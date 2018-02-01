@@ -7,6 +7,7 @@ import store from '../store'
 import Home from '@/components/Home'
 import Error404 from '@/components/404'
 import Blog from '@/components/Blog'
+import Topic from '@/components/Topic'
 import ViewPost from '@/components/ViewPost'
 import Showcase from '@/components/Showcase'
 
@@ -28,16 +29,19 @@ export const router = new Router({
     {
       path: '*',
       name: '404',
+      meta: { title: `Page not found` },
       component: Error404
     },
     {
       path: '/showcase',
       name: 'Showcase',
+      meta: { title: `Showcase` },
       component: Showcase
     },
     {
       path: '/login',
       name: 'Login',
+      meta: { title: `Login` },
       component: Login,
       beforeEnter (to, from, next) {
         if (!store.state.userStatus.loggedIn) {
@@ -54,6 +58,7 @@ export const router = new Router({
     {
       path: '/dashboard',
       name: 'Dashboard',
+      meta: { title: `Dashboard` },
       component: Dashboard,
       beforeEnter (to, from, next) {
         if (store.state.userStatus.loggedIn) {
@@ -70,24 +75,44 @@ export const router = new Router({
     {
       path: '/post/new',
       name: 'WriteBlog',
+      meta: { title: `Write new blog post` },
       component: WriteBlog
     },
     {
       path: '/post/edit',
       name: 'EditBlog',
+      meta: { title: `Edit blog post` },
       component: WriteBlog
     },
     {
       path: '/post/view/:postId',
       name: 'ViewPost',
+      meta: { title: `Blog` },
       component: ViewPost
+    },
+    {
+      path: '/topic/:tag',
+      name: 'ViewTopic',
+      meta: { title: `View topic` },
+      component: Topic
     },
     {
       path: '/blog',
       name: 'Blog',
+      meta: { title: `Blog` },
       component: Blog
     }
   ]
+})
+
+router.beforeEach((to, from, next) => {
+  // Change title based on meta.title property
+  if (to.meta.title) {
+    document.title = `${to.meta.title} | Yamen Sharaf - Frontend engineer`
+  } else {
+    document.title = `Yamen Sharaf - Frontend engineer`
+  }
+  next()
 })
 
 export default router

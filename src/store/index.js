@@ -8,6 +8,7 @@ import storage from '../db/storage'
 Vue.use(Vuex)
 const uuid = require('uuid/v1')
 const blogPostsRef = db.collection('blogPosts')
+const blogTagsRef = db.collection('blogTags').doc('tags')
 const resumeRef = storage.ref().child('Resume - Yamen Sharaf.pdf')
 
 const store = new Vuex.Store({
@@ -247,6 +248,17 @@ const store = new Vuex.Store({
     },
     fetchBlogPosts ({commit}) {
       return blogPostsRef.orderBy('date', 'desc').get()
+    },
+    async fetchBlogTags ({commit}) {
+      const rootTags = await blogTagsRef.get()
+      const tags = rootTags.data().tags
+      return tags
+    },
+    updateBlogTags ({commit}, payload) {
+      const newTags = payload
+      return blogTagsRef.set({
+        tags: newTags
+      })
     },
     fetchBlogPost ({commit}, payload) {
       return blogPostsRef.doc(payload).get()

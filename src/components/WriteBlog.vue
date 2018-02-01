@@ -45,6 +45,24 @@
             <div class="el-upload__text">Drop file here or <em>click to upload</em></div>
           </div>
         </el-upload>
+          <h4 class="h9 text-dark mt-3 text-center">
+            Post tags
+          </h4>
+          <el-select
+            v-model="blogForm.tags"
+            @change="updateTags"
+            multiple
+            filterable
+            allow-create
+            default-first-option
+            placeholder="Select or add tags for your post">
+            <el-option
+              v-for="(tag, i) in existingTags"
+              :key="i"
+              :label="tag"
+              :value="tag">
+            </el-option>
+          </el-select>
       </div>
     </div>
     <div class="row mb-5">
@@ -86,8 +104,10 @@ export default {
         title: ``,
         body: ``,
         userUid: '',
-        visibility: 'public'
-      }
+        visibility: 'public',
+        tags: []
+      },
+      existingTags: []
     }
   },
   computed: {
@@ -164,6 +184,17 @@ export default {
       this.editId = id
       const currentPost = this.getOldPostData(id)
       this.blogForm = { ...this.blogForm, ...currentPost }
+    },
+    updateTags (tags) {
+      let newTags = [...this.existingTags, ...tags]
+      let noDuplicateTags = [...new Set(newTags)]
+      this.$store.dispatch('updateBlogTags', noDuplicateTags)
+        .then(() => {
+          this.$message.success(`updated tags`)
+        })
+        .catch(err => {
+          this.$message.error(`Error: ${err} `)
+        })
     }
   },
   created () {
@@ -174,6 +205,14 @@ export default {
     })
   },
   mounted () {
+    this.$store.dispatch('fetchBlogTags')
+      .then(tags => {
+        this.existingTags = tags
+        console.log(tags)
+      })
+      .catch(err => {
+        console.log(err)
+      })
     this.blogForm.userUid = this.userUid
     if (this.routeParams.id) {
       this.initEditMode(this.routeParams.id)

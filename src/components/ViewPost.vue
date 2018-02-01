@@ -1,6 +1,6 @@
 <template>
   <div v-loading="postLoading" class="view-post container page-wrapper">
-    <div class="row flex-center mt-5">
+    <div class="row flex-center flex-column mt-5">
       <div v-if="post.visibility === 'private'" class="col-12">
         <el-alert
           :closable="false"
@@ -28,20 +28,26 @@
           {{ post.title }}
         </h1>
       </div>
-
       <div v-if="post.imageUrl && imageLoading" v-loading="imageLoading" style="min-height: 500px" class="col-md-12 mt-5">
-
       </div>
       <div v-if="post.imageUrl" class="col-md-6 mt-5">
         <img @load="HandleImageLoad" class="img-fluid" :src="post.imageUrl" :alt="post.title">
       </div>
     </div>
-    <div class="row mt-3 mb-5">
-      <div v-if="post.body" class="col-md-12 mt-5 mb-5">
+    <topics-list class="mt-5" :tags="post.tags"/>
+    <div class="row">
+      <div v-if="post.body" class="col-md-12 mb-5">
         <span class="ql-snow">
           <span class="ql-editor" v-html="post.body">
           </span>
         </span>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-12 col-md-4 offset-md-8 d-flex flex-center">
+        <p class="text-primary">
+          Last updated: <span class="text-muted"> {{ post.date.toDateString() }} </span>
+        </p>
       </div>
     </div>
     <div class="row mt-5">
@@ -53,9 +59,11 @@
 </template>
 
 <script>
+import TopicsList from './TopicsList.vue'
 import VueDisqus from 'vue-disqus/VueDisqus.vue'
 export default {
   components: {
+    'topics-list': TopicsList,
     'disqus': VueDisqus
   },
   data () {

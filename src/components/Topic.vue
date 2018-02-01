@@ -1,5 +1,12 @@
 <template>
 <div v-loading="postsLoading" class="container page-wrapper">
+  <div class="row mb-3">
+    <div class="col-12 bg-gray">
+      <h1 class="h1 text-dark">
+        Posts about <span class="text-primary"> {{tag}} </span>
+      </h1>
+    </div>
+  </div>
   <div class="row">
     <div class="col-md-12 d-flex flex-center">
     </div>
@@ -19,7 +26,6 @@
             <h1 class="h8 text-primary"> {{post.title}} </h1>
             <time class="text-muted">{{ post.date.toDateString() }}</time>
           </div>
-          <topics-list :tags="post.tags" />
         </el-card>
       </router-link>
     </div>
@@ -33,12 +39,8 @@
 </template>
 
 <script>
-import TopicsList from './TopicsList.vue'
 
 export default {
-  components: {
-    'topics-list': TopicsList
-  },
   data () {
     return {
       postsLoading: true,
@@ -48,7 +50,10 @@ export default {
   computed: {
     blogPosts () {
       // Getting public posts
-      return this.posts.filter(post => post.visibility === 'public')
+      return this.posts.filter(post => post.visibility === 'public' && post.tags.includes(this.tag))
+    },
+    tag () {
+      return this.$route.params.tag
     }
   },
   methods: {
